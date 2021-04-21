@@ -35,33 +35,50 @@ public class PacController {
     @ResponseBody
     @PostMapping(value = "/upload")
     public Object upload(@RequestParam("file") MultipartFile file) {
-        if(!file.getOriginalFilename().equals("pom.xml") && !file.getOriginalFilename().matches(".*\\.jar")){
+        if(!file.getOriginalFilename().equals("pom.xml") && !file.getOriginalFilename().matches(".*\\.jar") && !file.getOriginalFilename().matches(".*\\.zip")){
             return ResponseUtil.badArgument();
         }
 
         ArrayList<Dependency> dependenciesList = new ArrayList<>();
         try {
             byte[] bytes = file.getBytes();
-            String folderPath = "./repository/pom/";
+            String folderPath = String.format("%s%s%d/", "./repository/pom/", "folderForOwlaser", PacService.count.incrementAndGet());
+            File fold = new File(folderPath);
+            folderPath = String.format("%s/", fold.getAbsolutePath());
+            if (!fold.exists()) {
+                fold.mkdir();
+            } else {
+                /** todo 可能会有错误 */
+                fold.delete();
+                File newFold = new File(folderPath);
+                newFold.mkdir();
+            }
             Path filePath = Paths.get(folderPath + file.getOriginalFilename());
             Files.write(filePath, bytes);
             Pattern r = Pattern.compile("(pom.xml)$");
             Matcher m = r.matcher(file.getOriginalFilename());
 
             if(!m.find()){
-                byte[] pomFile = pacService.JarRead(folderPath + file.getOriginalFilename());
-                if(pomFile.length == 1) return ResponseUtil.noPom();
-                Files.write(filePath, pomFile);
+                byte[] pomFile = new byte[1];
+                if (file.getOriginalFilename().matches(".*\\.jar")) {
+                    pomFile = pacService.JarRead(folderPath + file.getOriginalFilename());
+                    if(pomFile.length == 1) return ResponseUtil.noPom();
+                    Files.write(filePath, pomFile);
+                } else {
+                    pacService.ZipRead(folderPath + file.getOriginalFilename(), folderPath);
+                    filePath = Paths.get(folderPath + "pom.xml");
+                }
             }
 
-            String textPath = pacService.CreateDependencyText(folderPath, filePath);
-            Node root = DependencyTreeService.GetRoot(textPath);
-            pacService.GetDependencies(root, dependenciesList);
-        } catch (IOException e) {
+            List<String> textPaths = pacService.CreateDependencyText(folderPath, filePath);
+            for (String textPath : textPaths) {
+                Node root = DependencyTreeService.GetRoot(textPath);
+                pacService.GetDependencies(root, dependenciesList);
+            }
+        }  catch (Exception e) {
             e.printStackTrace();
         }
         Sum_dependency_license sum_dependency_license = new Sum_dependency_license(dependenciesList,licenseService.getConflic(dependenciesList));
-
         return ResponseUtil.ok(sum_dependency_license);
     }
 

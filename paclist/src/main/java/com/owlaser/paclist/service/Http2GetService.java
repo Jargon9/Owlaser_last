@@ -74,7 +74,9 @@ public class Http2GetService {
                 driver.close();
             }
         }
-
+        if (versionList.isEmpty() || usageList.isEmpty() || licenseList.isEmpty()) {
+            return;
+        }
         dependency.setVersionList(versionList);
         dependency.setUsageList(usageList);
         String license = String.join("  ",licenseList);

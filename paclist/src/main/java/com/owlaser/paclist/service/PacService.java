@@ -2,6 +2,7 @@ package com.owlaser.paclist.service;
 
 import com.owlaser.paclist.dao.PacDao;
 import com.owlaser.paclist.entity.Dependency;
+import com.owlaser.paclist.util.ZipUtils;
 import fr.dutra.tools.maven.deptree.core.Node;
 import org.apache.maven.shared.invoker.*;
 import org.dom4j.Document;
@@ -23,6 +24,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Enumeration;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicLong;
 import java.util.jar.JarEntry;
 import java.util.jar.JarFile;
 import java.util.regex.Matcher;
@@ -40,10 +42,12 @@ public class PacService {
     @Autowired
     private Http2GetService http2GetService;
 
+    public static AtomicLong count = new AtomicLong(0);
+
     /**
      *运行maven命令，得到依赖树txt文件并返回txt的路径
      */
-    public String CreateDependencyText(String folderPath, Path pomPath) {
+    public List<String> CreateDependencyText(String folderPath, Path pomPath) {
         InvocationRequest request = new DefaultInvocationRequest();
         request.setPomFile(new File(String.valueOf(pomPath)));
         String textPath = folderPath + "dependency_tree";
@@ -56,7 +60,34 @@ public class PacService {
         } catch (MavenInvocationException e) {
             e.printStackTrace();
         }
-        return textPath;
+
+        List<String> textPaths = new ArrayList<>();
+        findAllDependence(textPaths, folderPath);
+        return textPaths;
+    }
+
+    /**
+     *找到该文件下所有txt路径
+     */
+    public void findAllDependence(List<String> textPaths, String path) {
+        File file = new File(path);
+        Pattern r = Pattern.compile("(dependency_tree)$");
+        if (file.exists()) {
+            File[] files = file.listFiles();
+            if (null != files) {
+                for (File file2 : files) {
+                    if (file2.isDirectory()) {
+                        findAllDependence(textPaths, file2.getAbsolutePath());
+                    } else {
+                        if (r.matcher(file2.getName()).find()){
+                            textPaths.add(file2.getAbsolutePath());
+                        }
+                    }
+                }
+            }
+        } else {
+            System.out.println("文件不存在!");
+        }
     }
 
 
@@ -145,6 +176,15 @@ public class PacService {
             }
         }
         return new byte[0];
+    }
+
+
+    /**
+     * 解压Zip包
+     */
+    public static void ZipRead(String filepath, String foldPath) throws Exception {
+        File file = new File(filepath);
+        ZipUtils.unZip(file, foldPath);
     }
 
     /**

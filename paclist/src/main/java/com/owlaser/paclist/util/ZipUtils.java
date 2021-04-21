@@ -2,126 +2,106 @@ package com.owlaser.paclist.util;
 
 import java.io.*;
 import java.util.Enumeration;
-import java.util.zip.*;
-
+import java.util.List;
+import java.util.zip.ZipEntry;
+import java.util.zip.ZipFile;
+import java.util.zip.ZipOutputStream;
 public class ZipUtils {
-
+    private static final int  BUFFER_SIZE = 2 * 1024;
     /**
-     * 压缩文件/文件夹
-     *
+     * zip解压
+     * @param srcFile        zip源文件
+     * @param destDirPath     解压后的目标文件夹
+     * @throws RuntimeException 解压失败会抛出运行时异常
      */
-    public static void compress(String srcFilePath, String destFilePath) {
-        File src = new File(srcFilePath);
-        if (!src.exists()) {
-            throw new RuntimeException(srcFilePath + "不存在");
+    public static void unZip(File srcFile, String destDirPath) throws RuntimeException {
+        long start = System.currentTimeMillis();
+        // 判断源文件是否存在
+        if (!srcFile.exists()) {
+            throw new RuntimeException(srcFile.getPath() + "所指文件不存在");
         }
-        File zipFile = new File(destFilePath);
+        // 开始解压
+        ZipFile zipFile = null;
         try {
-            FileOutputStream fos = new FileOutputStream(zipFile);
-            CheckedOutputStream cos = new CheckedOutputStream(fos, new CRC32());
-            ZipOutputStream zos = new ZipOutputStream(cos);
-            String baseDir = "";
-            compressbyType(src, zos, baseDir);
-            zos.close();
-        } catch (Exception e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
-    }
-
-    private static void compressbyType(File src, ZipOutputStream zos, String baseDir) {
-        if (!src.exists())
-            return;
-        System.out.println("压缩" + baseDir + src.getName());
-        if (src.isFile()) {
-            compressFile(src, zos, baseDir);
-        } else if (src.isDirectory()) {
-            compressDir(src, zos, baseDir);
-        }
-    }
-
-
-    /**
-     * 压缩文件
-     */
-    private static void compressFile(File file, ZipOutputStream zos, String baseDir) {
-        if (!file.exists())
-            return;
-        try {
-            BufferedInputStream bis = new BufferedInputStream(new FileInputStream(file));
-            ZipEntry entry = new ZipEntry(baseDir + file.getName());
-            zos.putNextEntry(entry);
-            int count;
-            byte[] buf = new byte[8019];
-            while ((count = bis.read(buf)) != -1) {
-                zos.write(buf, 0, count);
+            zipFile = new ZipFile(srcFile);
+            Enumeration<?> entries = zipFile.entries();
+            while (entries.hasMoreElements()) {
+                ZipEntry entry = (ZipEntry) entries.nextElement();
+                System.out.println("解压" + entry.getName());
+                // 如果是文件夹，就创建个文件夹
+                if (entry.isDirectory()) {
+                    String dirPath = destDirPath + "/" + entry.getName();
+                    File dir = new File(dirPath);
+                    dir.mkdirs();
+                } else {
+                    // 如果是文件，就先创建一个文件，然后用io流把内容copy过去
+                    File targetFile = new File(destDirPath + "/" + entry.getName());
+                    // 保证这个文件的父文件夹必须要存在
+                    if(!targetFile.getParentFile().exists()){
+                        targetFile.getParentFile().mkdirs();
+                    }
+                    targetFile.createNewFile();
+                    // 将压缩文件内容写入到这个文件中
+                    InputStream is = zipFile.getInputStream(entry);
+                    FileOutputStream fos = new FileOutputStream(targetFile);
+                    int len;
+                    byte[] buf = new byte[BUFFER_SIZE];
+                    while ((len = is.read(buf)) != -1) {
+                        fos.write(buf, 0, len);
+                    }
+                    // 关流顺序，先打开的后关闭
+                    fos.close();
+                    is.close();
+                }
             }
-            bis.close();
+            long end = System.currentTimeMillis();
+            System.out.println("解压完成，耗时：" + (end - start) +" ms");
         } catch (Exception e) {
-            // TODO: handle exception
-        }
-    }
-
-
-    /**
-     * 压缩文件夹
-     *
-     */
-    private static void compressDir(File dir, ZipOutputStream zos, String baseDir) {
-        if (!dir.exists())
-            return;
-        File[] files = dir.listFiles();
-        if(files.length == 0){
-            try {
-                zos.putNextEntry(new ZipEntry(baseDir + dir.getName() + File.separator));
-            } catch (IOException e) {
-                e.printStackTrace();
+            throw new RuntimeException("unzip error from ZipUtils", e);
+        } finally {
+            if(zipFile != null){
+                try {
+                    zipFile.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
         }
-        for (File file : files) {
-            compressbyType(file, zos, baseDir + dir.getName() + File.separator);
-        }
     }
 
-
     /**
-     * 解压文件/文件夹
+     * 压缩成ZIP 方法
+     * @param srcFiles 需要压缩的文件列表
+     * @param out           压缩文件输出流
+     * @throws RuntimeException 压缩失败会抛出运行时异常
      */
-    public static void decompress(String srcPath, String dest) throws Exception {
-        File file = new File(srcPath);
-        if (!file.exists()) {
-            throw new RuntimeException(srcPath + "所指文件不存在");
-        }
-        ZipFile zf = new ZipFile(file);
-        Enumeration entries = zf.entries();
-        ZipEntry entry = null;
-        while (entries.hasMoreElements()) {
-            entry = (ZipEntry) entries.nextElement();
-            System.out.println("解压" + entry.getName());
-            if (entry.isDirectory()) {
-                String dirPath = dest + File.separator + entry.getName();
-                File dir = new File(dirPath);
-                dir.mkdirs();
-            } else {
-                // 表示文件
-                File f = new File(dest + File.separator + entry.getName());
-                if (!f.exists()) {
-                    //String dirs = FileUtils.getParentPath(f);
-                    String dirs = f.getParent();
-                    File parentDir = new File(dirs);
-                    parentDir.mkdirs();
+    public static void toZip(List<File> srcFiles , OutputStream out)throws Exception {
+        long start = System.currentTimeMillis();
+        ZipOutputStream zos = null ;
+        try {
+            zos = new ZipOutputStream(out);
+            for (File srcFile : srcFiles) {
+                byte[] buf = new byte[BUFFER_SIZE];
+                zos.putNextEntry(new ZipEntry(srcFile.getName()));
+                int len;
+                FileInputStream in = new FileInputStream(srcFile);
+                while ((len = in.read(buf)) != -1){
+                    zos.write(buf, 0, len);
                 }
-                f.createNewFile();
-                // 将压缩文件内容写入到这个文件中
-                InputStream is = zf.getInputStream(entry);
-                FileOutputStream fos = new FileOutputStream(f);
-                int count;
-                byte[] buf = new byte[8192];
-                while ((count = is.read(buf)) != -1) {
-                    fos.write(buf, 0, count);
+                zos.closeEntry();
+                in.close();
+            }
+            long end = System.currentTimeMillis();
+            System.out.println("压缩完成，耗时：" + (end - start) +" ms");
+        } catch (Exception e) {
+            throw new RuntimeException("zip error from ZipUtils",e);
+        }finally{
+            if(zos != null){
+                try {
+                    zos.close();
+                } catch (Exception e) {
+                    e.printStackTrace();
                 }
-                is.close();
-                fos.close();
             }
         }
     }
