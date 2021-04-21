@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="d11b36d6-2a5e-4ea7-bd45-6accf672a2f0" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/../.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mvnw" beforeDir="false" afterPath="$PROJECT_DIR$/mvnw" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/repository/pom/dependency_tree" beforeDir="false" afterPath="$PROJECT_DIR$/repository/pom/dependency_tree" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/repository/pom/pom.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/owlaser/paclist/component/SecurityDatabase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/owlaser/paclist/component/SecurityDatabase.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/owlaser/paclist/service/PacService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/owlaser/paclist/service/PacService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/owlaser/paclist/PaclistApplicationTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/owlaser/paclist/PaclistApplicationTests.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/owlaser/paclist/component/SecurityDatabase.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/owlaser/paclist/component/SecurityDatabase.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/owlaser/paclist/controller/PacController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/owlaser/paclist/controller/PacController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/owlaser/paclist/service/DependencyTreeService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/owlaser/paclist/service/DependencyTreeService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/owlaser/paclist/service/LicenseService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/owlaser/paclist/service/LicenseService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/owlaser/paclist/service/PacService$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/owlaser/paclist/service/PacService$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/owlaser/paclist/service/PacService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/owlaser/paclist/service/PacService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/paclist-0.0.1-SNAPSHOT.jar" beforeDir="false" afterPath="$PROJECT_DIR$/target/paclist-0.0.1-SNAPSHOT.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/paclist-0.0.1-SNAPSHOT.jar.original" beforeDir="false" afterPath="$PROJECT_DIR$/target/paclist-0.0.1-SNAPSHOT.jar.original" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/com/owlaser/paclist/PaclistApplicationTests.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/com/owlaser/paclist/PaclistApplicationTests.class" afterDir="false" />
+    </list>
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="ProjectId" id="1rF3F0ZsnAiNRq5In74HW0QgEK6" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="1" id="Add" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RequestMappingsPanelOrder0" value="0" />
+    <property name="RequestMappingsPanelOrder1" value="1" />
+    <property name="RequestMappingsPanelWidth0" value="75" />
+    <property name="RequestMappingsPanelWidth1" value="75" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="project.structure.last.edited" value="Project" />
+    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.side.proportion" value="0.2" />
+    <property name="settings.editor.selected.configurable" value="project.propCompiler" />
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="RunManager" selected="Spring Boot.PaclistApplication">
+    <configuration name="Http2GetService" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.owlaser.paclist.service.Http2GetService" />
+      <module name="paclist" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.owlaser.paclist.service.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="PaclistApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="paclist" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.owlaser.paclist.PaclistApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.Http2GetService" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="d11b36d6-2a5e-4ea7-bd45-6accf672a2f0" name="Default Changelist" comment="" />
+      <created>1618557902784</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1618557902784</updated>
+      <workItem from="1618557906500" duration="4233000" />
+      <workItem from="1618716982084" duration="5123000" />
+      <workItem from="1618820791014" duration="3727000" />
+      <workItem from="1618832606991" duration="3334000" />
+      <workItem from="1618907077286" duration="8830000" />
+      <workItem from="1618975860113" duration="10450000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/owlaser/paclist/service/PacService.java</url>
+          <line>123</line>
+          <option name="timeStamp" value="5" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/owlaser/paclist/service/PacService.java</url>
+          <line>124</line>
+          <option name="timeStamp" value="6" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>jar://$MAVEN_REPOSITORY$/org/jsoup/jsoup/1.12.1/jsoup-1.12.1.jar!/org/jsoup/helper/HttpConnection.class</url>
+          <line>291</line>
+          <option name="timeStamp" value="8" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>jar://$MAVEN_REPOSITORY$/org/jsoup/jsoup/1.12.1/jsoup-1.12.1.jar!/org/jsoup/helper/HttpConnection.class</url>
+          <line>303</line>
+          <option name="timeStamp" value="9" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/owlaser/paclist/service/PacService.java</url>
+          <line>206</line>
+          <option name="timeStamp" value="21" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/owlaser/paclist/service/PacService.java</url>
+          <line>217</line>
+          <option name="timeStamp" value="22" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/owlaser/paclist/service/PacService.java</url>
+          <line>49</line>
+          <option name="timeStamp" value="23" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+</project>

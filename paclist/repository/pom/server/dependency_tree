@@ -1,0 +1,13 @@
+com.bytedance.nuwa:server:jar:1.0.0-SNAPSHOT
++- io.dropwizard.metrics:metrics-core:jar:4.0.1:compile
+|  \- org.slf4j:slf4j-api:jar:1.7.22:compile
++- org.projectlombok:lombok:jar:1.16.20:provided
++- org.mockito:mockito-all:jar:1.10.19:test
++- org.springframework.boot:spring-boot-test:jar:1.5.1.RELEASE:test
+|  \- org.springframework.boot:spring-boot:jar:1.5.1.RELEASE:test
+|     \- org.springframework:spring-context:jar:4.3.6.RELEASE:test
+|        +- org.springframework:spring-aop:jar:4.3.6.RELEASE:test
+|        +- org.springframework:spring-beans:jar:4.3.6.RELEASE:test
+|        \- org.springframework:spring-expression:jar:4.3.6.RELEASE:test
+\- org.springframework:spring-test:jar:4.3.6.RELEASE:test
+   \- org.springframework:spring-core:jar:4.3.6.RELEASE:test
